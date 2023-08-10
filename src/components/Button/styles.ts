@@ -8,6 +8,8 @@ export const Button = styled.button`
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.background};
     cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 500;
 `
 
 export const NavButton = styled.button`

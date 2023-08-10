@@ -1,34 +1,37 @@
 import * as S from './styles';
-import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
 import { Facebook } from '../Image/Facebook';
 import { Twitter } from '../Image/Twitter';
 import { Instagram } from '../Image/Instagram';
+import * as React from 'react';
+
 
 export const Footer = () => {
     return (
         <S.Footer>
-            <Logo color={false} titleColor='#FFFFFF' />
-            <ul>
-                <li>
-                    <Link to=''>About us</Link>
-                </li>
-                <li>
-                    <Link to=''>Delivery</Link>
-                </li>
-                <li>
-                    <Link to=''>Help & Support</Link>
-                </li>
-                <li>
-                    <Link to=''>T&C</Link>
-                </li>
-            </ul>
-            <p>Contact: +91 1234567899</p>
-            <div>
+            <S.Container>
+                <Logo color={false} titleColor='#FFFFFF' />
+                <S.LinksContainer>
+                    <li>
+                        <S.Links to=''>About us</S.Links>
+                    </li>
+                    <li>
+                        <S.Links to=''>Delivery</S.Links>
+                    </li>
+                    <li>
+                        <S.Links to=''>Help & Support</S.Links>
+                    </li>
+                    <li>
+                        <S.Links to=''>T&C</S.Links>
+                    </li>
+                </S.LinksContainer>
+                <S.Contact>Contact: +91 1234567899</S.Contact>
+            </S.Container>
+            <S.SocialMedia>
                 <Facebook />
                 <Instagram />
                 <Twitter />
-            </div>
+            </S.SocialMedia>
         </S.Footer>
     )
 }

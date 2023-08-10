@@ -1,5 +1,7 @@
 import * as S from './styles';
 import { LogoImage } from './../Image/LogoImage/';
+import React from "react";
+
 
 type LogoProps = {
     color?: boolean,
