@@ -6,6 +6,7 @@ type Color = {
     black: string;
     background: string;
     text: string;
+    cardBackground: string;
 };
 
 
@@ -20,6 +21,7 @@ const theme: ThemeColors = {
         white: '#FFFFFF',
         black: '#000',
         background: '#FC8019',
+        cardBackground: '#F8F8F8',
         text: '#202020',
     },
 };
