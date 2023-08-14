@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-
+import { Link } from "react-router-dom";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -23,7 +23,12 @@ export const Text = styled.p`
    color: ${(props) => props.theme.colors.black};
    font-size: 1rem;
    font-weight: 400;
-   span{
-      font-weight: 500;
-   }
+   
 `
+
+export const StyledLink = styled(Link)`
+color: ${(props) => props.theme.colors.black};
+   font-size: 1rem;
+   font-weight: 500;
+   text-decoration: none;
+   `

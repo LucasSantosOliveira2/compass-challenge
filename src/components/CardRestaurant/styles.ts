@@ -2,12 +2,12 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
     width: 205px;
-    height: 374px;
-    border-color: ${(props) => props.theme.colors.cardBackground};
+    background-color: ${(props) => props.theme.colors.cardBackground};
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap:20px;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
     padding: 25px;
 `
 
@@ -15,6 +15,7 @@ export const Title = styled.h1`
     font-family: ${(props) => props.theme.colors.text};
     font-size: 1rem;
     font-weight: 500;
+    cursor: pointer;
     `
 
 export const SecondContainer = styled.div`
@@ -33,9 +34,17 @@ export const Location = styled(Info)`
     color: ${(props) => props.theme.colors.primary};
 `;
 
+
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+`
 export const Image = styled.img`
     width: 100%;
     max-width: 170px;
-    height: 256px;
+    cursor: pointer;
+    height: 170px;
     border-radius: 10px;
 `

@@ -19,12 +19,15 @@ export const CardRestaurant = ({ name, location, rating, deliveryTime, image }: 
     return (
         <S.Container>
             <S.Image src={image} alt={image} />
-            <S.Title>{name}</S.Title>
-            <S.SecondContainer>
-                <S.Location>{location}</S.Location>
-                <S.SecondContainer> <Star isPrimary={isRatingHigh} /><S.Info>{rating}</S.Info></S.SecondContainer>
-            </S.SecondContainer>
+            <S.Wrapper>
+                <S.Title>{name}</S.Title>
+                <S.SecondContainer>
+                    <S.Location>{location}</S.Location>
+                    <S.SecondContainer> <Star isPrimary={isRatingHigh} /><S.Info>{rating}</S.Info></S.SecondContainer>
+                </S.SecondContainer>
+            </S.Wrapper>
             <S.SecondContainer><Time /> <S.Info>{deliveryTime}</S.Info></S.SecondContainer>
+
         </S.Container>
     )
 }

@@ -23,7 +23,7 @@ export const SecondContainer = styled.div`
 
 export const InputDisplay = styled.div`
     display: none;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
         display: block;
     }
 `
@@ -36,7 +36,7 @@ export const InputContainer = styled.div`
     padding: 10px 10px;
     opacity: 0.75;
     
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
     width: 100%;
     max-width: 28.125rem;
     padding: 10px 20px;
