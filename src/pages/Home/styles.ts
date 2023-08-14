@@ -6,7 +6,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    padding: 0px 30px;
+    padding: 30px 30px;
     gap: 30px;
     @media screen and (min-width: 768px) {
         gap: 100px;
@@ -69,7 +69,6 @@ export const Animation = styled.span`
 
 export const AnimationBackground = styled(Animation)`
     background: #FFD0D0; 
-
 `
 
 export const Banana = styled.img`
@@ -136,25 +135,31 @@ export const CardContainer = styled.div`
 export const CarouselContainer = styled(motion.div)`
     display: none;
     @media screen and (min-width: 1024px) {
-        width: 100%;
+        width: 400px;
         display: flex;
+        padding-left: 30px;
         height: 500px;
-        overflow: hidden;
         cursor: grab;
+        overflow: hidden;
         align-items: center;
+        z-index: -1;
   }
 `
 export const ImageCarousel = styled(motion.img)`
-  width: 100%;
-  max-width: 300px;
-  border-radius: 20px;
-  height: 380px;
-  pointer-events: none;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 20px;
+    height: 380px; 
+    object-fit: cover;
+    pointer-events: none;
 `
+
 export const Headling = styled.div`
 @media screen and (min-width: 1024px) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    align-items: flex-start;
+    grid-template-columns: 1.2fr 0.8fr
 }
 `
 
@@ -164,25 +169,19 @@ export const Wrapper = styled.div`
     align-items: flex-start;
 `
 
-const slideAnimation = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-150%);
-  }
-`
-
-
 export const Inner = styled(motion.div)`
     display: flex;
     gap: 40px;
     cursor: grab;
-    animation: ${slideAnimation} 10s linear infinite;
 `
 
 export const Text = styled.p`
-    font-size: 1rem;
-    font-weight: 400;
-    color: #404040;
+    display: none;
+    @media screen and (min-width: 1024px) {
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        text-align: justify;
+        color: #404040;
+    }
 `

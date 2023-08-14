@@ -24,24 +24,14 @@ export const Home: React.FC = () => {
         headers: apiHeaders
     });
 
-
     const carouselImages = [CarouselOne, CarouselTwo, CarouselThree];
     const carousel = useRef<null | HTMLDivElement>(null);
-    const [width, setWidht] = useState(0)
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    useEffect(() => {
-        if (carousel.current) {
-            const newWidth = carousel.current.scrollWidth - carousel.current.offsetWidth;
-            setWidht(newWidth);
-        }
-    }, []);
-
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prevSlide) => (prevSlide + 1) % carouselImages.length);
-        }, 3000);
+        }, 2900);
 
         return () => {
             clearInterval(interval);
@@ -66,22 +56,27 @@ export const Home: React.FC = () => {
                 </S.Wrapper>
                 <S.CarouselContainer ref={carousel} whileTap={{ cursor: "grabbing" }}>
                     <S.Inner
-                        drag="x"
-                        dragConstraints={{ right: 0, left: -width }}
-                        initial={{ x: -width / 2 }}
-                        animate={{ x: -width }}
-                        transition={{ duration: 10, ease: "linear" }}
-                        onAnimationComplete={() => {
-                            setCurrentSlide(0);
+                        animate={{
+                            x: -((currentSlide * 260) % (carouselImages.length * 500)),
+                        }}
+                        transition={{
+                            duration: 0.5,
+                            type: "tween",
+                            ease: "linear",
                         }}
                     >
                         {carouselImages.map((image, index) => (
-                            <S.ImageCarousel
-                                key={index}
+                            <S.ImageCarousel key={index}
                                 src={image}
                                 style={{
+                                    opacity:
+                                        index === currentSlide
+                                            ? 1
+                                            : index === (currentSlide + 1) % carouselImages.length && currentSlide % 1 === 0
+                                                ? 1
+                                                : 0,
                                     transform: `scale(${index === currentSlide ? 1.2 : 1})`,
-                                    transition: "transform 0.1s ease-in-out",
+                                    transition: "transform 0.3s ease-in-out, opacity 0.1s ease-in-out",
                                 }}
                             />
                         ))}
