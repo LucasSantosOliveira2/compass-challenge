@@ -42,7 +42,6 @@ const useAxios = ({ url, method = "GET", headers }: useAxiosProps) => {
             const responseData = response.data;
             setData(responseData.results || []);
             setError(null);
-            console.log("Dados da API:", responseData.results);
         } catch (error) {
             setError("Error fetching data");
         } finally {

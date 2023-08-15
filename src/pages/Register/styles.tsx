@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+
 export const Container = styled.form`
     display: flex;
     flex-direction: column;
@@ -13,12 +14,14 @@ export const Container = styled.form`
     margin-bottom: 30px;
  }
 `
+
 export const InputContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: flex-start;
    gap:30px
 `
+
 export const Text = styled.p`
    color: ${(props) => props.theme.colors.black};
    font-size: 1rem;
@@ -28,7 +31,21 @@ export const Text = styled.p`
 
 export const StyledLink = styled(Link)`
 color: ${(props) => props.theme.colors.black};
-   font-size: 1rem;
-   font-weight: 500;
-   text-decoration: none;
-   `
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+ `
+
+export const TextStyled = styled(Text)`
+    font-weight: 700;
+`
+
+export const Wrapper = styled.div`
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+    width: 100%;
+
+
+`
+

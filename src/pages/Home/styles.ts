@@ -26,7 +26,7 @@ export const Description = styled.h1`
     }
 
     @media screen and (min-width: 1024px) {
-        font-size: 3.5rem;
+        font-size: 3.3rem;
     }
 `
 
@@ -137,7 +137,7 @@ export const CarouselContainer = styled(motion.div)`
     @media screen and (min-width: 1024px) {
         width: 400px;
         display: flex;
-        padding-left: 30px;
+        padding-left: 35px;
         height: 500px;
         cursor: grab;
         overflow: hidden;

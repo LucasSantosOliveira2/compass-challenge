@@ -13,16 +13,16 @@ export const Footer = () => {
                 <Logo color={false} titleColor='#FFFFFF' />
                 <S.LinksContainer>
                     <li>
-                        <S.Links to=''>About us</S.Links>
+                        <S.Links to='*'>About us</S.Links>
                     </li>
                     <li>
-                        <S.Links to=''>Delivery</S.Links>
+                        <S.Links to='*'>Delivery</S.Links>
                     </li>
                     <li>
-                        <S.Links to=''>Help & Support</S.Links>
+                        <S.Links to='*'>Help & Support</S.Links>
                     </li>
                     <li>
-                        <S.Links to=''>T&C</S.Links>
+                        <S.Links to='*'>T&C</S.Links>
                     </li>
                 </S.LinksContainer>
                 <S.Contact>Contact: +91 1234567899</S.Contact>

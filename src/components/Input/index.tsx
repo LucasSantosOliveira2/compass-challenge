@@ -11,6 +11,7 @@ export interface InputProps {
     text?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string | number;
+    autoComplete?: string;
 }
 
 export const Input: React.FC<InputProps> = (props) => {
@@ -23,6 +24,7 @@ export const Input: React.FC<InputProps> = (props) => {
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={props.onChange}
+                autoComplete={props.autoComplete}
             />
         </S.Container>
     );

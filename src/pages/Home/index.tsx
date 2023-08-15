@@ -44,11 +44,10 @@ export const Home: React.FC = () => {
                 <S.Wrapper>
                     <S.Description>Premium <span>quality</span></S.Description>
                     <S.Description>
-                        Food for your
-                        <S.Animation> <S.Banana src={BananaImage} /> </S.Animation>
+                        Food for your <S.Animation> <S.Banana src={BananaImage} /> </S.Animation>
                         <span> health</span>
-                        <S.AnimationBackground><S.Apple src={AppleImage} /></S.AnimationBackground>
-                        <span>& Daily Life</span>
+                        <S.AnimationBackground> <S.Apple src={AppleImage} /></S.AnimationBackground>
+                        <span> & Daily Life</span>
                     </S.Description>
                     <S.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -72,7 +71,7 @@ export const Home: React.FC = () => {
                                     opacity:
                                         index === currentSlide
                                             ? 1
-                                            : index === (currentSlide + 1) % carouselImages.length && currentSlide % 1 === 0
+                                            : index === (currentSlide + 1) % carouselImages.length
                                                 ? 1
                                                 : 0,
                                     transform: `scale(${index === currentSlide ? 1.2 : 1})`,
