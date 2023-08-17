@@ -1,8 +1,11 @@
 import * as S from './styles';
+import React from 'react';
 import { Porcent } from '../../components/Image/Porcent';
 import RestaurantImage from '../../assets/images/Restaurant.png'
 import { ChangeEvent, useState } from 'react';
 import { Item } from '../../components/Item';
+import { DishInfo } from '../../components/DishInfo';
+import { Column } from '../../components/Image/Column';
 import { useLocation } from 'react-router-dom';
 
 
@@ -11,7 +14,6 @@ export const Items = () => {
     const location = useLocation();
     const restaurant = location.state?.restaurant;
     const [selectedOption, setSelectedOption] = useState<number>(1);
-
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(Number(event.target.value));
@@ -27,7 +29,6 @@ export const Items = () => {
                 <S.Headling>
                     <S.RestaurantImage src={RestaurantImage} />
                     <S.RestaurantContainer>
-
                         <S.Title>{restaurant.name}</S.Title>
                         <S.Location>{restaurant.location}</S.Location>
                         <S.Wrapper>
@@ -63,22 +64,62 @@ export const Items = () => {
                 </S.Headling>
             </S.Container>
             <S.SecondContainer>
-                <S.Select name="" onChange={handleSelectChange} value={selectedOption}>
-                    <option value="1">Recommended</option>
-                    <option value="2">Breakfast Box</option>
-                    <option value="3">Lunch Box</option>
-                    <option value="4">Combo Box</option>
-                    <option value="5">Biriyani Box</option>
-                </S.Select>
-                <div>
-                    <img src="" alt="" />
-                    <h1>Brunch for 2 - Veg (Save upto Rs.45)</h1>
-                    <p>₹599</p>
-                    <p>Brunch: One meal to rule them all! Grab this mega saver combo with your choice of 2 veg wraps, Aloo Paratha (2 pcs), chole and Curd lunchbox and 2 choco lava cakes. This is just bliss on a plate!</p>
-                </div>
-                <Item />
+                <S.Bottom>
+                    <S.Select name="" onChange={handleSelectChange} value={selectedOption}>
+                        <option value="1">Recommended</option>
+                        <option value="2">Breakfast Box</option>
+                        <option value="3">Lunch Box</option>
+                        <option value="4">Combo Box</option>
+                        <option value="5">Biriyani Box</option>
+                    </S.Select>
+                    <S.Options>
+                        <S.Option>
+                            <h1>
+                                Recommended
+                            </h1>
+                        </S.Option>
+                        <S.Option>
+                            <h1>
+                                Breakfast Box
+                            </h1>
+                        </S.Option>
+                        <S.Option>
+                            <h1>
+                                Lunch Box
+                            </h1>
+                        </S.Option>
+                        <S.Option>
+                            <h1>
+                                Combo Box
+                            </h1>
+                        </S.Option>
+                        <S.Option>
+                            <h1>
+                                Biriyani Box
+                            </h1>
+                        </S.Option>
+                    </S.Options>
+                    <S.Line>
+                        <Column />
+                    </S.Line>
+                    <DishInfo />
+                    <S.Cart>
+                        <S.CartContent>
+                            <S.CartText>Cart</S.CartText>
+                            <S.CartInfo>2 items</S.CartInfo>
+                        </S.CartContent>
+                        <Item />
+                        <S.CartBottom>
+                            <S.CartContent>
+                                <S.CartText>Subtotal</S.CartText>
+                                <S.CartText>₹799</S.CartText>
+                            </S.CartContent>
+                            <S.CartInfoPrice>Extra charges may apply</S.CartInfoPrice>
+                        </S.CartBottom>
+                        <S.Button>Checkout</S.Button>
+                    </S.Cart>
+                </S.Bottom>
             </S.SecondContainer>
-
         </section >
     );
 }

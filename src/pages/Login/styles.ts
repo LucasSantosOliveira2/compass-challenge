@@ -17,13 +17,12 @@ export const InputContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   gap:30px
+   gap: 30px;
 `
 export const Text = styled.p`
    color: ${(props) => props.theme.colors.black};
    font-size: 1rem;
    font-weight: 400;
-   
 `
 
 export const StyledLink = styled(Link)`
@@ -31,4 +30,4 @@ color: ${(props) => props.theme.colors.black};
    font-size: 1rem;
    font-weight: 500;
    text-decoration: none;
-   `
+`

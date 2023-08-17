@@ -37,7 +37,6 @@ export const RestaurantContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
- 
 `
 
 export const Title = styled.h1`
@@ -98,8 +97,6 @@ export const RestaurantImage = styled.img`
     max-width: 300px;
     height: 200px;
     border-radius: 20px;
-
-
 `
 export const OffersTitle = styled.h1`
     font-size: 1.15rem;
@@ -123,6 +120,7 @@ export const OfferInfo = styled.div`
 
 export const SecondContainer = styled(Container)`
     background-color: ${(props) => props.theme.colors.white};
+   
 `
 
 export const Select = styled.select`
@@ -146,4 +144,98 @@ export const Select = styled.select`
         
     }
 
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+
 `
+export const Cart = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    
+`
+export const CartContent = styled.div`
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const CartText = styled.h1`
+    font-size: 1.25rem;
+    font-weight: 500;
+    color:${(props) => props.theme.colors.black};
+`
+
+export const CartInfo = styled.p`
+    font-size: 0.85rem;
+    font-size: 500;
+    color:${(props) => props.theme.colors.black};
+`
+
+export const CartInfoPrice = styled.p`
+    font-size: 0.75rem;
+    font-size: 400;
+    color:${(props) => props.theme.colors.primary};   
+`
+export const Button = styled.button`
+    width: 300px;
+    height: 66px;
+    border-radius: 10px;
+    background: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.white};
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+`
+
+export const CartBottom = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
+export const Options = styled.ul`
+    display: none;
+    @media screen and (min-width: 1024px) {
+        text-decoration: none;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+`
+
+export const Option = styled.li`
+    &:hover{
+    color:${(props) => props.theme.colors.background};
+    }
+
+    h1{
+        font-size: 0.85rem;
+        font-weight: 500;
+
+    }
+    `
+export const Line = styled.div`
+  display: none;
+    @media screen and (min-width: 1024px) {
+        display: block;
+    }
+`
+export const Bottom = styled.div`
+    margin: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    @media screen and (min-width: 1024px) {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 60px;
+        margin: 80px 0px;
+    }
+    `

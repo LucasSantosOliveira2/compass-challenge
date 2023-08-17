@@ -6,6 +6,7 @@ export type User = {
 }
 
 export type Restaurant = {
+    objectId: string,
     createdAt: string;
     deliveryTime: string;
     image: string;
@@ -13,9 +14,6 @@ export type Restaurant = {
     location: string;
     name: string;
     rating: number;
-    topDishes: {
-        // Defina a estrutura dos pratos principais aqui, se necessário
-    }[];
     updatedAt: string;
     slug: string;
 }
