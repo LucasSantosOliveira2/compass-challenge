@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
                         setUser(data.user);
                     }
                 } catch (error) {
-                    console.error("Token validation error:", error);
+                    //console.error("Token validation error:", error);
                 }
             }
         }
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
             const data = response.data;
 
-            console.log(data); // Verifique a estrutura dos dados
+            console.log(data);
 
             if (data.username && data.sessionToken) {
                 setUser(data);

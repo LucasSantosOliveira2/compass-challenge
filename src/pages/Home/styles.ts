@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+
 
 export const Container = styled.div`
     display: flex;
@@ -184,4 +186,10 @@ export const Text = styled.p`
         text-align: justify;
         color: #404040;
     }
+`
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.text};
+
 `

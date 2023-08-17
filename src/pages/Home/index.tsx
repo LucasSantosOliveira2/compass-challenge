@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import * as S from './styles';
-import useAxios from "../../hook/useAxios";
 import { CardRestaurant } from "../../components/CardRestaurant";
 import Image from "../../assets/images/r.png"
 import BananaImage from "../../assets//images/Banana.png"
@@ -8,25 +7,77 @@ import AppleImage from "../../assets//images/Apple.png"
 import CarouselOne from "../../assets/images/Rectangle1.png"
 import CarouselTwo from "../../assets/images/Rectangle2.png"
 import CarouselThree from "../../assets/images/Rectangle3.png"
+import axios from 'axios';
+import { Restaurant } from "../../types/user";
 
 
-export const Home: React.FC = () => {
-    const apiUrl = "https://parseapi.back4app.com/classes/FitMe";
-    const apiHeaders = {
-        "X-Parse-Application-Id": "lrAPveloMl57TTby5U0S4rFPBrANkAhLUll8jFOh",
-        "X-Parse-REST-API-Key": "8aqUBWOjOplfA6lstntyYsYVkt3RzpVtb8qU5x08",
-        "content-type": "application/json"
-    };
-
-    const { data, loading, error } = useAxios({
-        url: apiUrl,
-        method: "GET",
-        headers: apiHeaders
-    });
-
-    const carouselImages = [CarouselOne, CarouselTwo, CarouselThree];
+export const Home = () => {
     const carousel = useRef<null | HTMLDivElement>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+    const carouselImages = useMemo(
+        () => [CarouselOne, CarouselTwo, CarouselThree],
+        []
+    );
+
+    function transformURL(name: string): string {
+        return name.toLowerCase().replace(/\s+/g, "-");
+    }
+
+
+    useEffect(() => {
+        const fetchRestaurants = async () => {
+            const headers = {
+                "X-Parse-Application-Id": "DSiIkHz2MVbCZutKS7abtgrRVsiLNNGcs0L7VsNL",
+                "X-Parse-Master-Key": "0cpnqkSUKVkIDlQrNxameA6OmjxmrA72tsUMqVG9",
+                "X-Parse-Client-Key": "zXOqJ2k44R6xQqqlpPuizAr3rs58RhHXfU7Aj20V",
+            };
+
+            const query = `
+                query GetAllRestaurants {
+                    fitMes {
+                        count
+                        edges {
+                            node {
+                                objectId
+                                name
+                                rating
+                                deliveryTime
+                                location
+                                image
+                            }
+                        }
+                    }
+                }
+            `;
+
+            try {
+                const response = await axios.post(
+                    "https://parseapi.back4app.com/graphql",
+                    { query },
+                    { headers }
+                );
+
+                const fitMesData = response.data.data.fitMes;
+                const restaurantsWithSlugs = fitMesData.edges.map((edge: any) => {
+                    const restaurant = edge.node;
+                    restaurant.slug = transformURL(restaurant.name);
+                    return restaurant;
+                });
+                setRestaurants(restaurantsWithSlugs);
+                setLoading(false);
+            } catch (error) {
+                setError("Error fetching restaurants");
+                setLoading(false);
+            }
+        };
+
+        fetchRestaurants();
+
+
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -36,7 +87,7 @@ export const Home: React.FC = () => {
         return () => {
             clearInterval(interval);
         };
-    }, [carouselImages.length]);
+    }, [carouselImages]);
 
     return (
         <S.Container>
@@ -90,15 +141,21 @@ export const Home: React.FC = () => {
                     <p>{error}</p>
                 ) : (
                     <S.CardContainer>
-                        {data.map((restaurant, index) => (
-                            <CardRestaurant
+                        {restaurants.map((restaurant, index) => (
+                            <S.StyledLink
                                 key={index}
-                                name={restaurant.name}
-                                location={restaurant.location}
-                                rating={restaurant.rating}
-                                deliveryTime={restaurant.deliveryTime}
-                                image={Image}
-                            />
+                                to={`/${restaurant.slug}`}
+                                state={{ restaurant }}
+                            >
+                                <CardRestaurant
+                                    key={index}
+                                    name={restaurant.name}
+                                    location={restaurant.location}
+                                    rating={restaurant.rating}
+                                    deliveryTime={restaurant.deliveryTime}
+                                    image={Image}
+                                />
+                            </S.StyledLink>
                         ))}
                     </S.CardContainer>
                 )}

@@ -4,11 +4,11 @@ import GlobalStyle from './theme/globalStyles';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { Items } from './pages/Items';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import theme from './theme';
-import * as React from 'react'; // Importe o React
-
+import * as React from 'react';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Login />} />
+          <Route path="/:slug" element={<Items />} />
         </Routes>
         <Footer />
       </BrowserRouter>
