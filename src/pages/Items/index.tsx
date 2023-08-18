@@ -2,22 +2,74 @@ import * as S from './styles';
 import React from 'react';
 import { Porcent } from '../../components/Image/Porcent';
 import RestaurantImage from '../../assets/images/Restaurant.png'
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { Item } from '../../components/Item';
 import { DishInfo } from '../../components/DishInfo';
 import { Column } from '../../components/Image/Column';
 import { useLocation } from 'react-router-dom';
-
+import { Restaurant } from '../../types/user';
+import axios from 'axios';
 
 export const Items = () => {
 
     const location = useLocation();
     const restaurant = location.state?.restaurant;
     const [selectedOption, setSelectedOption] = useState<number>(1);
+    const [restaurantDetails, setRestaurantDetails] = useState<Restaurant | null>(null); // Estado para armazenar os detalhes do restaurante
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(Number(event.target.value));
     };
+
+    useEffect(() => {
+        const fetchRestaurantDetails = async () => {
+            if (restaurant) {
+                const headers = {
+                    "X-Parse-Application-Id": "DSiIkHz2MVbCZutKS7abtgrRVsiLNNGcs0L7VsNL",
+                    "X-Parse-Master-Key": "0cpnqkSUKVkIDlQrNxameA6OmjxmrA72tsUMqVG9",
+                    "X-Parse-Client-Key": "zXOqJ2k44R6xQqqlpPuizAr3rs58RhHXfU7Aj20V",
+                };
+
+                const id = restaurant.objectId;
+                const query = `
+                        query GetRestaurantById {
+                            fitMe(id: "${id}") {
+                                name
+                                image
+                                location
+                                topDishes {
+                                    ...AllDishes
+                                }
+                            }
+                        }
+                        fragment AllDishes on Dish {
+                            name
+                            description
+                            image
+                            price
+                        }
+                    `;
+
+
+                try {
+                    const response = await axios.post(
+                        "https://parseapi.back4app.com/graphql",
+                        { query },
+                        { headers }
+                    );
+                    console.log("Restaurant details:", response.data.data.fitMe);
+                    setRestaurantDetails(response.data.data.fitMe);
+
+                    const dishes = response.data.data.fitMe.topDishes;
+                    console.log("Top dishes:", dishes);
+                } catch (error) {
+                    console.error("Error fetching restaurant details:", error);
+                }
+            }
+        };
+
+        fetchRestaurantDetails();
+    }, [restaurant]);
 
     if (!restaurant) {
         return <div>Loading...</div>;

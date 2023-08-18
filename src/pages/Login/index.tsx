@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
 import axios from "axios";
 import { BoxTitle } from "./../../components/BoxTitle/";
@@ -13,15 +13,6 @@ export const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-
-
-    const handleUsernameInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
-    }
-
-    const handlePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    }
 
     const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
@@ -118,14 +109,15 @@ export const Login = () => {
                     name="username"
                     autoComplete="username"
                     value={username}
-                    onChange={handleUsernameInput}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <Input
                     label="Password"
                     type="password"
                     name="password"
+                    autoComplete="password"
                     value={password}
-                    onChange={handlePasswordInput}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </S.InputContainer>
             <Button type="submit" onClick={handleLogin}>

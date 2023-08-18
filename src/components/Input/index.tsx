@@ -10,6 +10,7 @@ export interface InputProps {
     placeholder?: string;
     text?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (event: ChangeEvent<HTMLInputElement>) => void;
     value?: string | number;
     autoComplete?: string;
 }
@@ -24,6 +25,7 @@ export const Input: React.FC<InputProps> = (props) => {
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={props.onChange}
+                onBlur={props.onBlur}
                 autoComplete={props.autoComplete}
             />
         </S.Container>

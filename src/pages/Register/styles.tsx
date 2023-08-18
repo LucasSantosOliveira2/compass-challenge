@@ -19,7 +19,14 @@ export const InputContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   gap:30px
+   gap:30px;
+`
+
+export const MessageContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 5px;
 `
 
 export const Text = styled.p`
@@ -37,15 +44,17 @@ color: ${(props) => props.theme.colors.black};
  `
 
 export const TextStyled = styled(Text)`
-    font-weight: 700;
+   font-weight: 700;
 `
 
 export const Wrapper = styled.div`
-    display: flex;
-     flex-direction: column;
-     align-items: center;
-    width: 100%;
-
-
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
 `
-
+export const ErrorMessage = styled.p`
+   font-size: 1rem;
+   color: ${(props) => props.theme.colors.red};
+   font-weight: 600;
+`

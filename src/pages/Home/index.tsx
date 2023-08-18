@@ -60,7 +60,7 @@ export const Home = () => {
                     { headers }
                 );
 
-                console.log(response.data);
+                console.log(response.data.data.fitMes);
                 const fitMesData = response.data.data.fitMes;
                 const restaurantsWithSlugs = fitMesData.edges.map((edge: any) => {
                     const restaurant = edge.node;
@@ -75,10 +75,12 @@ export const Home = () => {
             }
         };
 
-        fetchRestaurants();
+        if (restaurants.length === 0) {
+            fetchRestaurants();
+        }
 
 
-    }, []);
+    }, [restaurants]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -162,5 +164,5 @@ export const Home = () => {
                 )}
             </S.SecondContainer>
         </S.Container >
-    );
-};
+    )
+}
