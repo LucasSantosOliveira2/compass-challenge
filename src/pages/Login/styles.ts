@@ -31,3 +31,15 @@ color: ${(props) => props.theme.colors.black};
    font-weight: 500;
    text-decoration: none;
 `
+export const MessageContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 5px;
+`
+export const ErrorMessage = styled.p`
+   font-size: 1rem;
+   color: ${(props) => props.theme.colors.red};
+   font-weight: 600;
+`
+

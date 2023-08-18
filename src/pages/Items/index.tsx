@@ -7,7 +7,7 @@ import { Item } from '../../components/Item';
 import { DishInfo } from '../../components/DishInfo';
 import { Column } from '../../components/Image/Column';
 import { useLocation } from 'react-router-dom';
-import { Restaurant } from '../../types/user';
+import { Restaurant, Dish } from '../../types/user';
 import axios from 'axios';
 
 export const Items = () => {
@@ -15,10 +15,34 @@ export const Items = () => {
     const location = useLocation();
     const restaurant = location.state?.restaurant;
     const [selectedOption, setSelectedOption] = useState<number>(1);
-    const [restaurantDetails, setRestaurantDetails] = useState<Restaurant | null>(null); // Estado para armazenar os detalhes do restaurante
+    const [restaurantDetails, setRestaurantDetails] = useState<Restaurant | null>(null);
+    const [cartItems, setCartItems] = useState<Dish[]>([]);
+    const [subtotal, setSubtotal] = useState(0);
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(Number(event.target.value));
+    };
+
+    const handleAddToCart = (dish: Dish) => {
+        const updatedDish = { ...dish, quantity: 1 };
+        setCartItems(prevCartItems => [...prevCartItems, updatedDish]);
+
+        const newSubtotal = cartItems.reduce((total: number, item: Dish) => total + (item.price * item.quantity), 0) + (dish.price * 1);
+        setSubtotal(newSubtotal);
+    };
+
+    const handleQuantityChange = (itemName: string, newQuantity: number) => {
+        const updatedCart = cartItems.map(item => {
+            if (item.name === itemName) {
+                return { ...item, quantity: newQuantity };
+            }
+            return item;
+        });
+
+        setCartItems(updatedCart);
+
+        const newSubtotal = updatedCart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        setSubtotal(newSubtotal);
     };
 
     useEffect(() => {
@@ -57,11 +81,7 @@ export const Items = () => {
                         { query },
                         { headers }
                     );
-                    console.log("Restaurant details:", response.data.data.fitMe);
                     setRestaurantDetails(response.data.data.fitMe);
-
-                    const dishes = response.data.data.fitMe.topDishes;
-                    console.log("Top dishes:", dishes);
                 } catch (error) {
                     console.error("Error fetching restaurant details:", error);
                 }
@@ -154,17 +174,36 @@ export const Items = () => {
                     <S.Line>
                         <Column />
                     </S.Line>
-                    <DishInfo />
+                    <S.DishContainer >
+                        {restaurantDetails?.topDishes.map((dish, index) => (
+                            <DishInfo
+                                key={index}
+                                name={dish.name}
+                                price={dish.price}
+                                description={dish.description}
+                                onAddToCart={() => handleAddToCart(dish)}
+                            />
+
+                        ))}
+                    </S.DishContainer>
                     <S.Cart>
                         <S.CartContent>
                             <S.CartText>Cart</S.CartText>
-                            <S.CartInfo>2 items</S.CartInfo>
+                            <S.CartInfo>{cartItems.length} items</S.CartInfo>
                         </S.CartContent>
-                        <Item />
+                        {cartItems.map((item, index) => (
+                            <Item
+                                key={index}
+                                name={item.name}
+                                price={item.price}
+                                restaurant={restaurant.name}
+                                onQuantityChange={handleQuantityChange}
+                            />
+                        ))}
                         <S.CartBottom>
                             <S.CartContent>
                                 <S.CartText>Subtotal</S.CartText>
-                                <S.CartText>₹799</S.CartText>
+                                <S.CartText>₹{subtotal}</S.CartText>
                             </S.CartContent>
                             <S.CartInfoPrice>Extra charges may apply</S.CartInfoPrice>
                         </S.CartBottom>

@@ -6,7 +6,7 @@ export type User = {
 }
 
 export type Restaurant = {
-    objectId: string,
+    objectId: string;
     createdAt: string;
     deliveryTime: string;
     image: string;
@@ -16,4 +16,13 @@ export type Restaurant = {
     rating: number;
     updatedAt: string;
     slug: string;
+    topDishes: Dish[];
+}
+
+export type Dish = {
+    name: string;
+    description: string;
+    image: string;
+    price: number;
+    quantity: number;
 }

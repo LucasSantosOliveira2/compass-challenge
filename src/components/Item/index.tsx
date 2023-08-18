@@ -4,28 +4,38 @@ import { IncrementIcon } from "../Image/IncrementICon";
 import { DecrementIcon } from "../Image/DecrementICon";
 
 type ItemProps = {
-    name?: string
-    price?: number
+    restaurant?: string,
+    name: string,
+    price: number,
+    onQuantityChange: (name: string, attQuantity: number) => void,
 }
 
-export const Item = ({ name }: ItemProps) => {
-
-    const [counter, setCounter] = useState(0);
+export const Item = ({ name, price, restaurant, onQuantityChange }: ItemProps) => {
+    const [counter, setCounter] = useState(1);
 
     const increment = () => {
         setCounter(counter + 1);
+        if (restaurant) {
+            onQuantityChange(name!, counter + 1);
+        }
     };
 
     const decrement = () => {
-        setCounter(counter - 1);
+        if (counter > 1) {
+            setCounter(counter - 1);
+            if (restaurant) {
+                onQuantityChange(name!, counter - 1);
+            }
+        }
     };
+
     return (
         <S.Container>
-            <S.RestaurantName>from <span>Lunch box</span></S.RestaurantName>
+            <S.RestaurantName>from <span>{restaurant}</span></S.RestaurantName>
             <S.ItemSeleciontContainer>
                 <S.DishContainer>
-                    <S.NameDish>Brunch for 2 - Veg</S.NameDish>
-                    <S.Price>₹599</S.Price>
+                    <S.NameDish>{name}</S.NameDish>
+                    <S.Price>₹{Number((price * counter).toFixed(2)).toLocaleString()}</S.Price>
                 </S.DishContainer>
                 <S.CounterContainer>
                     <S.CounterImage onClick={decrement}>
@@ -40,4 +50,3 @@ export const Item = ({ name }: ItemProps) => {
         </S.Container>
     )
 }
-
