@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/components/Image/WhiteStar/index.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/components/Image/WhiteStar</a> index.tsx</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line medium'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">type WhiteStarProps = {
+    isFavorite: boolean,
+}
+&nbsp;
+export const WhiteStar = <span class="fstat-no" title="function not covered" >({</span> isFavorite }: WhiteStarProps) =&gt; {
+<span class="cstat-no" title="statement not covered" >    return (</span>
+        &lt;svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 22 20" fill={isFavorite ? "#FC8019" : "none"}&gt;
+            &lt;path opacity="0.75" d="M4.55113 19.8492L4.84496 19.4446C4.8011 19.4128 4.76705 19.3693 4.74666 19.3191C4.72627 19.2688 4.72036 19.2139 4.7296 19.1605L4.72971 19.1598L5.80291 12.9061L5.84737 12.647L5.65916 12.4635L1.11661 8.03472L1.11658 8.03468C1.06105 7.98056 1.02929 7.90661 1.02826 7.82908C1.02724 7.75185 1.0568 7.67735 1.11048 7.62185C1.15611 7.57557 1.21406 7.54639 1.27596 7.53755L1.27716 7.53737L7.55562 6.62491L7.81582 6.58709L7.93213 6.35129L10.7376 0.663776C10.7377 0.663467 10.7379 0.66316 10.738 0.662852C10.8114 0.517413 10.9877 0.459775 11.1299 0.529955L11.1304 0.530241C11.1872 0.558171 11.2332 0.604162 11.2611 0.660924L11.2613 0.661356L14.068 6.35129L14.1843 6.58709L14.4445 6.62491L20.7214 7.53714C20.7216 7.53717 20.7218 7.53721 20.722 7.53724C20.886 7.56197 20.9919 7.71124 20.9683 7.86396L20.9683 7.86395L20.9675 7.86949C20.9587 7.93149 20.9294 7.98953 20.883 8.03519C20.8829 8.03533 20.8827 8.03547 20.8826 8.03562L16.3409 12.4635L16.1527 12.647L16.1972 12.9061L17.2704 19.1598L17.2705 19.1602C17.2975 19.3171 17.1922 19.4675 17.0328 19.495L17.0321 19.4951C16.9687 19.5061 16.9038 19.4955 16.8507 19.4672L16.8485 19.466L11.2327 16.5135L11 16.3912L10.7674 16.5135L5.15162 19.466L5.15084 19.4664C5.10291 19.4917 5.04885 19.5031 4.99478 19.4993C4.94072 19.4954 4.88882 19.4765 4.84496 19.4446L4.55113 19.8492Z" stroke="#404040" /&gt;
+        &lt;/svg&gt;
+    )
+}</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-08-18T20:00:19.026Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
