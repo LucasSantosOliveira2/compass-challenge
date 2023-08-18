@@ -220,6 +220,9 @@ export const Option = styled.li`
 
     }
     `
+export const ItemsContainer = styled.section`
+    position: relative;
+`
 export const Line = styled.div`
   display: none;
     @media screen and (min-width: 1024px) {
@@ -244,6 +247,65 @@ export const DishContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 85px;
+    @media screen and (min-width: 1024px) {
+        gap: 20px;
+    }
+`
+
+export const FavoriteContainer = styled.div`
+    display: flex;
+    align-items: center;
     gap: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
+export const FavoriteButton = styled.button`
+    width: 120px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    gap: 5px;
+    border-radius: 10px;
+    background-color: ${(props) => props.theme.colors.white};
+    font-size: 1rem;
+    font-weight: 500;
+    color: #404040;
+    border:none;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+    &:hover{
+        transform: scale(0.95); 
+        transition: transform 0.2s ease-in-out;    
+ }
+`
+
+export const InputContainer = styled.div`
+    display: none;
+    @media screen and (min-width: 1024px) {
+        cursor: pointer;
+        display: flex;
+        align-items:center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 20.125rem;
+        padding: 10px 20px;
+        gap: 10px;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+        height: 49px;
+        border-radius: 10px;
+        background: ${(props) => props.theme.colors.white};
+    }
+`
+
+export const Input = styled.input`
+    width: 280px;
+    border: none;
+    outline: none;
+    color: #808080;
+    font-size: 1rem;
+    font-weight: 500;
 `
 

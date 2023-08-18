@@ -4,9 +4,10 @@ export const DishContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
     @media screen and (min-width: 1024px) {
         flex-direction: row;
-        gap: 10px;
+        gap: 162px;
     }
 `
 export const DishInfo = styled.div`
@@ -14,6 +15,9 @@ export const DishInfo = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    @media screen and (min-width: 1024px) {
+        width: 300;
+    }
 `
 
 export const DishName = styled.h1`

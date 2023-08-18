@@ -8,6 +8,8 @@ import { DishInfo } from '../../components/DishInfo';
 import { Column } from '../../components/Image/Column';
 import { useLocation } from 'react-router-dom';
 import { Restaurant, Dish } from '../../types/user';
+import { Search } from '../../components/Image/Search';
+import { WhiteStar } from '../../components/Image/WhiteStar';
 import axios from 'axios';
 
 export const Items = () => {
@@ -17,6 +19,7 @@ export const Items = () => {
     const [selectedOption, setSelectedOption] = useState<number>(1);
     const [restaurantDetails, setRestaurantDetails] = useState<Restaurant | null>(null);
     const [cartItems, setCartItems] = useState<Dish[]>([]);
+    const [isFavorite, setIsFavorite] = useState<boolean>(false);
     const [subtotal, setSubtotal] = useState(0);
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -28,21 +31,30 @@ export const Items = () => {
         setCartItems(prevCartItems => [...prevCartItems, updatedDish]);
 
         const newSubtotal = cartItems.reduce((total: number, item: Dish) => total + (item.price * item.quantity), 0) + (dish.price * 1);
-        setSubtotal(newSubtotal);
+        setSubtotal(Number(newSubtotal.toFixed(2)));
     };
-
     const handleQuantityChange = (itemName: string, newQuantity: number) => {
-        const updatedCart = cartItems.map(item => {
-            if (item.name === itemName) {
-                return { ...item, quantity: newQuantity };
-            }
-            return item;
-        });
+        let updatedCart: Dish[] = [];
+
+        if (newQuantity <= 1) {
+            updatedCart = cartItems.filter(item => item.name !== itemName);
+        } else {
+            updatedCart = cartItems.map(item => {
+                if (item.name === itemName) {
+                    return { ...item, quantity: newQuantity };
+                }
+                return item;
+            });
+        }
 
         setCartItems(updatedCart);
 
         const newSubtotal = updatedCart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        setSubtotal(newSubtotal);
+        setSubtotal(Number(newSubtotal.toFixed(2)));
+    };
+
+    const handleFavoriteClick = () => {
+        setIsFavorite(!isFavorite);
     };
 
     useEffect(() => {
@@ -96,7 +108,7 @@ export const Items = () => {
     }
 
     return (
-        <section>
+        <S.ItemsContainer>
             <S.Container>
                 <S.Headling>
                     <S.RestaurantImage src={RestaurantImage} />
@@ -135,6 +147,15 @@ export const Items = () => {
                     </S.OffersContainer>
                 </S.Headling>
             </S.Container>
+            <S.FavoriteContainer>
+                <S.InputContainer>
+                    <S.Input type="text" placeholder='Search for dish' />
+                    <Search />
+                </S.InputContainer>
+                <S.FavoriteButton onClick={handleFavoriteClick}>
+                    <WhiteStar isFavorite={isFavorite} />Favourite
+                </S.FavoriteButton>
+            </S.FavoriteContainer>
             <S.SecondContainer>
                 <S.Bottom>
                     <S.Select name="" onChange={handleSelectChange} value={selectedOption}>
@@ -211,6 +232,6 @@ export const Items = () => {
                     </S.Cart>
                 </S.Bottom>
             </S.SecondContainer>
-        </section >
+        </S.ItemsContainer >
     );
 }

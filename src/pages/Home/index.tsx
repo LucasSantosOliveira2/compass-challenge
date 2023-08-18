@@ -60,7 +60,6 @@ export const Home = () => {
                     { headers }
                 );
 
-                console.log(response.data.data.fitMes);
                 const fitMesData = response.data.data.fitMes;
                 const restaurantsWithSlugs = fitMesData.edges.map((edge: any) => {
                     const restaurant = edge.node;
